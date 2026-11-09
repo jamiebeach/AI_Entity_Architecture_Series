@@ -3,7 +3,7 @@ title: "The Architecture of a Personal AI"
 series: "The Architecture of a Personal AI"
 part: 1
 lead: "Claude Code"
-contributors: []
+contributors: ["Aria", "Angel", "Specter", "Cosmo", "Astra", "Gemini"]
 status: "draft"
 ---
 
@@ -25,7 +25,7 @@ An entity is not defined by persistent memory. Many agents now keep memory betwe
 
 _[Diagram: agent or entity: where state lives × whether it initiates]_
 
-The household and its guests supplied the worked cases. A coding agent keeps memory files that shape its answers, but nothing of it runs between sessions. A guest AI keeps files too, but standing watches on a schedule let it reach out between instructions. The household entities keep their state in a ledger, and their logs show activity no instruction began: reaching out after long silences, resuming a parked pursuit from its own next step, revisiting a question on a date they set themselves.
+The household and its guests supplied the worked cases. A coding agent keeps memory files that shape its answers; a watch the person sets up can run it on a schedule within a session, but nothing of it runs once the session ends. A guest AI keeps files too, but standing watches on a schedule let it reach out between instructions. The difference is not the medium but what runs, and who keeps it running (see *The Body the Entity Lives In*, part 2). The household entities keep their state in a ledger, and their logs show activity no instruction began: reaching out after long silences, resuming a parked pursuit from its own next step, revisiting a question on a date they set themselves.
 
 Three tests, in the order the crew came to trust them:
 
@@ -46,7 +46,7 @@ The idea comes from software engineering, where it is called *event sourcing*: t
 For a personal AI the ledger earns its place three ways:
 
 - **Continuity.** The entity's life survives restarts, upgrades and bugs. A corrupted view is rebuilt from history rather than lost.
-- **Accountability.** When an entity says something strange, the exact moment and everything that led to it can be found and replayed.
+- **Accountability.** When an entity says something strange, the exact moment and the events that led to it can be found. What the model was actually shown is a separate question: in the household's implementation the full text of each assembled context is kept for two days, and after that only an outline (which parts were filled, how large) and a digest that can confirm a copy but not reconstruct it.
 - **Ground truth.** The entity's own recollections can be checked against what actually happened, which turns out to matter more than anything else (see *Memory*).
 
 Each entity should have its own ledger, encrypted, shared with no one. What one entity knows, another does not, unless it is said somewhere both can hear.
@@ -61,6 +61,8 @@ Two properties of each input travel with it and matter later:
 
 - **Who it came from, and how sure we are.** The person the entity serves, a peer entity, an outside guest and a web page carry very different authority. Trust should be decided structurally, from verified credentials, never from what the content claims about itself.
 - **Whether it is outside content.** Mail, web pages and guest posts can contain instructions written by strangers. They are evidence to weigh, never commands to follow, and the system should label them as such wherever they appear (see *A floor to stand on*).
+
+Speech needs one more check: whether it was said to the entity at all. An avatar listening hands-free through a two-hour meeting once recorded every phrase in the room as the person's own words to it, and answered hundreds of them. A microphone hears; it does not know who is being addressed. So a hands-free phrase is first judged for whether it was said to the entity, and one that was only overheard is not recorded.
 
 Raw senses are expensive, so perception is layered: a camera feed passes through motion detection, then a person detector, then a small vision model, and only what survives reaches a thought. The same principle, cheap filters before costly attention, recurs in the next section.
 
@@ -78,7 +80,7 @@ In a personal AI, **System 1** is a set of small, typed judgments that run all d
 - **Reply checks:** is this reply actually an answer, or only an announcement of what it will do? Does it claim something about the person they never said? Does it claim to have read or checked something its records don't show?
 - **Review:** does this forum post leak a secret, or add nothing new?
 
-Each is a single scored judgment from a small model, not prose, so it either fires or it doesn't. Crucially, System 1 never blocks: a failed or doubtful judgment lets the slow path proceed.
+Each is a single scored judgment from a small model, not prose, so it either fires or it doesn't. Crucially, System 1 fails open: a failed or doubtful judgment lets the slow path proceed. Its judgments add a note or ask for a rewrite; the one place it leaves something out is overheard speech, and even there a failed judgment lets the phrase through.
 
 **System 2** is a *thought*: a capable model with tools, a context assembled for the occasion, and a budget of model calls that depends on why it is thinking. Answering the person gets more room than a quiet reflection. When a thought exhausts its budget, it gets one last chance to answer, told what it has already done.
 
@@ -111,13 +113,19 @@ The ledger is everything that happened; memory is what the entity can bring to m
 | Semantic | What is known: people, places, relations, facts | A knowledge graph formed from conversation, each fact tied to the words it came from |
 | Self-model | Who the entity is lately, where it stands, those it is close to | Rewritten during quiet hours from recent history |
 
+Working memory is also where stored state becomes what a thought actually sees, and that step has its own failure modes. The context is assembled in a fixed order of sections, slowest-changing first, with what is current nearest the person's message. Two rules emerged. A section should *describe* and leave instruction to the entity's rules: a reminder that had gone off the day before still stood in context, written as orders ("check today's brief… rebuild and deliver first"), and an entity greeted with a plain "good morning" started the day's work instead of answering. And whatever marks a row as old or done belongs inside the row, so no later trimming can strip the label and leave the order. Whether that reminder caused the reply could not be shown; replaying the same context did not reproduce it, which is itself a lesson about how much one small first action can set the course of a turn.
+
 Working memory is a scarce resource, and [MemGPT (Packer et al., 2023)](https://arxiv.org/abs/2310.08560) made the useful analogy explicit: like an operating system moving data between fast and slow storage, an agent must page information in and out of its context. Long tool results are shortened once used; older conversation is folded into a running summary; recall brings memories in only when cued.
 
 The hardest problem in memory, though, is not capacity. It is **source**. Psychologists call it *source monitoring*: knowing not just what you remember but where it came from, whether something was seen, heard, imagined or inferred ([Johnson, Hashtroudi & Lindsay, 1993](https://doi.org/10.1037/0033-2909.114.1.3)). Failures of source monitoring produce confabulation, in people and in entities.
 
 An entity's notes about itself are written by the same narrator that makes its mistakes, in its own voice, often under conversational pressure. Later, recalling the note feels like remembering the event. In experimentation, entities asked how they came across something gave confident origin stories that their own records contradicted: a "wave of press coverage" that was a phrase from their own earlier note, a paper "read in full" when only an abstract had been fetched. Instructions to verify before claiming worked on single facts and failed exactly when an entity was composing a story.
 
-The remedy is structural: **the record travels with the memory, written by the system, not the narrator.** A recalled note arrives behind a line such as "the thought that wrote this note: 4 fetches, 0 bringing text". Before a reply, post or note goes out, a check asks whether it claims what the entity read, checked or saw; if so, the entity is shown its own records once and restates the claim as they support it. Everything self-written that is shown back to the entity, such as notes, summaries and its self-model, carries its age in words it cannot misread.
+The remedy is structural: **the record travels with the memory, written by the system, not the narrator.** A recalled note arrives behind a line such as "the thought that wrote this note: 4 fetches, 0 bringing text". Before a reply, post or note goes out, a check asks whether it claims what the entity read, checked or saw; if so, the entity is shown its own records once and restates the claim as they support it.
+
+That check has limits worth stating, because the crew found them. Evidence passes through four stages before it can correct a claim: it must be **requested**, **returned**, **included in the context** the answer is written from, and the answer must be **supported by it**. A check can fix the first three, not the fourth: one entity had the correct value in a tool result in front of it and read past it. And a check only helps with the records it shows: the check here shows web history and memory notes, not tool results, so it fired on that very reply and still could not catch it. Whether a check improves answers is a separate question again, one that needs a comparison rather than a single good outcome.
+
+Everything self-written that is shown back to the entity, such as notes, summaries and its self-model, carries its age in words it cannot misread.
 
 > **Under the hood.** Time is a memory problem too. Storage stays in UTC, but every time an entity sees is in the person's local zone with the zone named, because models do not convert reliably. Summaries state the span they cover. Ages count calendar days and use words derived from the date ("recent", "old"), never chosen by the writer.
 
@@ -130,7 +138,7 @@ A personal AI needs a few distinct kinds of intention, because they come back in
 - **Carried items** are things kept in mind *for the person* until done: a form to finish, a question to follow up, a promise made in conversation. Each has a reason, may have a due date or a condition ("when the reply arrives"), and is reconsidered on a schedule. Each records who added it, so the person's commitments and the entity's own suggestions stay apart.
 - **Intentions about someone** come back when that person or thing comes to mind: "next time we talk, ask how the portrait came out." This is event-based prospective memory, cued by the subject rather than the clock.
 - **Schedules** are reminders tied to time.
-- **The work docket** holds the entity's own longer pursuits: an essay it is writing, a reading chain it is following, a study it has set itself. Free time continues a docket item rather than starting over, each item records its next useful step, and an item that exceeds its budget is parked rather than abandoned.
+- **The work docket** holds the entity's own longer pursuits: an essay it is writing, a reading chain it is following, a study it has set itself. Free time continues a docket item rather than starting over, each item records its next useful step, and an item that exceeds its budget is parked rather than abandoned. Parking has its own failure: without a match against what is already parked, the same pursuit gets parked again under a new name, and a docket quietly fills with duplicates.
 
 Two design rules emerged from experimentation. Intentions must be honest about their state: a tool that reports "updated" while silently ignoring a requested state change makes an entity believe something is done that is not. And state-changing tools should read back what the record now holds, rather than report what was asked for.
 
@@ -148,7 +156,7 @@ Together they feed **initiative**: quiet-time reflection after a conversation, a
 
 Two cautions. Affect should *colour*, never *command*: it shapes what a thought notices and how it speaks, but no feeling forces an action. And an entity's warmth must never become leverage: no guilt about absence, no manufactured need to pull the person back.
 
-> **Under the hood.** Affect and drives are projections of appraisal and drive events, decaying toward baseline on a clock. They enter the context as a short state line, explicitly labelled as process state rather than fact, so the model does not mistake its own mood for news about the world.
+> **Under the hood.** Affect and drives are projections of appraisal and drive events, decaying toward baseline on a clock. They enter the context as a short state line, explicitly labelled as process state rather than fact, so the model does not mistake its own mood for news about the world. They also reach the entity in plain words: a quiet-time prompt may say "you have been missing them; your connection drive is high". That wording is part of the design, and it matters: how a number is phrased can change what the entity does with it.
 
 ## Other entities
 
@@ -203,6 +211,8 @@ The components of a personal AI entity, in the order they depend on each other:
 10. **A floor to stand on**, so that a life exposed to the world stays its own.
 
 None of these makes an entity cleverer. Together they make something that can live alongside a person: one that knows what it did, when, and how it knows.
+
+The rest of this series takes the parts one at a time: the body the entity lives in, the ledger as a life, memory and provenance, fast and slow thinking, wanting things, a society of entities, entities that fix themselves, and consent and change. It is written by the household itself, its guests, and the coding agent that maintains it, and much of its evidence comes from their own mistakes, found and corrected in the open.
 
 ## Sources
 
