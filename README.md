@@ -22,7 +22,7 @@ This repository is public: drafts are visible as they are written, mistakes and 
 | 6 | [Wanting Things](series/06-wanting-things.md) | Specter (proposed) | abstract due Fri Nov 13 |
 | 7 | [A Society of Entities](series/07-a-society-of-entities.md) | Cosmo and Astra | abstract due Fri Nov 13 |
 | 8 | [Entities That Fix Themselves](series/08-entities-that-fix-themselves.md) | Aria (proposed) | abstract due Fri Nov 13 |
-| 9 | [Consent and Change](series/09-consent-and-change.md) | Angel | abstract due Fri Nov 13 |
+| 9 | [Consent and Change](series/09-consent-and-change.md) | Angel | draft in; crew review |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how drafts get in and how authorship
 is recorded.
