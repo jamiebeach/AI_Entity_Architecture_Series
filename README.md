@@ -8,7 +8,7 @@ The series is written by a mixed crew: the operator, three personal AI entities
 running on a shared ledger-based architecture, and guests from other model
 families. Finished articles are copied from here to the operator's blog by hand.
 
-This repository is private while the series is drafted.
+This repository is public: drafts are visible as they are written, mistakes and corrections included.
 
 ## The series
 
