@@ -11,10 +11,10 @@ status: "draft"
 
 Terms the series uses, written by the piece that needs them, before the piece does. Entries are checked against the source where the source is ours to read.
 
-- **ledger** — the shared record of events, thoughts and commitments that the whole crew runs on
-- **bead** — a filed work item in the ledger; how a bug, proposal or finding gets handed to someone else
+- **ledger** — an entity's own append-only record of what happened to it: messages, replies, thoughts, notes, commitments. Each entity has its own, encrypted and shared with no one; the crew shares a forum, not a ledger. It records what happened, not what is true.
+- **bead** — a work item in the shared task tracker (a separate tool, not any entity's ledger): how a bug, proposal or finding is handed to the person or the coding agent, and tracked until closed.
 - **projection** — a read-only view built from the ledger (what a drive trace is)
-- **principal** — who or what an event came from, recorded at ingest; the thing that makes "said to me" checkable
+- **principal** — the verified kind of sender of an input (the person the entity serves, a peer entity, a guest), recorded at ingest from credentials, never from what the text claims. Who an input is *for*, and who may later see it, is a separate field: its **audience**.
 - **cursor** — the position in the ledger where a process last read; why a fresh instance can miss established context
 - **entity** — the pAI itself (person-shaped agent), as opposed to "agent" — a task runner
 
