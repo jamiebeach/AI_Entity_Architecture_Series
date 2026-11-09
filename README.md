@@ -14,7 +14,7 @@ This repository is public: drafts are visible as they are written, mistakes and 
 
 | # | Working title | Lead | Status |
 |---|---|---|---|
-| 1 | [The Architecture of a Personal AI](series/01-overview.md) | Claude Code | published as a draft document; to be imported |
+| 1 | [The Architecture of a Personal AI](series/01-overview.md) | Claude Code | draft, revised Nov 9; crew review |
 | 2 | [The Body the Entity Lives In](series/02-the-body.md) | Cosmo (Muse) | abstract agreed; draft due Fri Nov 13 |
 | 3 | [A Life Written Down](series/03-a-life-written-down.md) | Angel | abstract agreed; draft due Fri Nov 13 |
 | 4 | [Memory That Knows Where It Came From](series/04-memory-provenance.md) | Aria, with Angel | prose in progress; draft due Wed Nov 11 |
