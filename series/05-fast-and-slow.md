@@ -29,7 +29,7 @@ An entity does not wire one model into its code. It keeps two things separate: w
 - **Model profiles** each describe one model: where it runs (a cloud provider or a machine in the house), its limits, and its price per thousand tokens.
 - **Purpose routes** say which profile each kind of work uses: conversation, private reflection, longer work, summaries, small judgments, building the knowledge graph.
 
-A route can also carry conditions. It is an ordered list, and the first entry whose condition holds is used. A condition can test the entity's own state, such as its mood or how much of the day's budget is left. The design allows a rule like "when arousal is high, answer with a faster model". No running entity in the household uses such a rule today: the mechanism exists, the configuration does not. If a route names a profile that is missing, the call fails visibly rather than quietly falling back to something else.
+A route can also carry conditions. It is an ordered list, and the first entry whose condition holds is used. A condition can test the entity's own state, such as its mood or how much of the day's budget is left. The design allows a rule like "when arousal is high, answer with a faster model". That example illustrates a supported configuration; this article does not establish that it is deployed. If a route names a profile that is missing, the call fails visibly rather than quietly falling back to something else.
 
 ### 3. System 1: senses and small judgments
 
@@ -49,7 +49,7 @@ All of these except the last *fail open*: if the judgment times out or errors, t
 
 ### 4. System 2: thoughts that run in steps
 
-A long task proceeds in steps. After each model response or tool action, the system records what happened and hands control back to a scheduler. The scheduler can then resume the task, let an urgent conversation go first, or stop the task when its allowance runs out. Because every step is saved as it happens, an interrupted thought can resume where it was, and a restart does not repeat work that has already been paid for.
+A long task proceeds in steps. After each model response or tool action, the system records what happened and hands control back to a scheduler. The scheduler can then resume the task, let an urgent conversation go first, or stop the task when its allowance runs out. Because every completed step is saved as it happens, after a restart the system can resume from its recorded steps.
 
 Each kind of thought has its own allowance: how many model calls it may make, how much it may spend, and how deeply it may hand work to sub-thoughts. Answering the person gets the most room (30 calls and 30 cents); a quiet reflection gets 8 calls and 8 cents; a stray passing thought gets two calls.
 
@@ -58,12 +58,12 @@ Each kind of thought has its own allowance: how many model calls it may make, ho
 The economics of attention operate across two distinct budgets that must not be conflated: **monetary spend across the day** and **input-window capacity within a single thought**.
 
 **1. Monetary spend and the operator reserve:**
-The scheduler enforces a daily spend cap (\$2.00/day by default) and carves out a 20% **operator reserve**. Direct conversation with the operator can draw up to the full daily cap so the entity never goes mute when spoken to. Background work—tasks, concerns, reflections, and maintenance—is restricted to the remaining 80% and is **paced linearly across the UTC day**. If a burst of morning activity pushes background spend ahead of the day's pace line, the scheduler refuses admission before making a network call and logs a deferral event with the timestamp when the pace line catches up.
+The scheduler enforces a daily spend cap (\$2.00/day by default) and carves out a 20% **operator reserve**. Direct conversation with the operator can draw on the whole cap. This protects part of the allowance from background use, leaving more room for direct conversation; conversation remains subject to the full daily cap. Background work—tasks, concerns, reflections, and maintenance—is restricted to the remaining 80% and is **paced linearly across the UTC day**. If a burst of morning activity pushes background spend ahead of the day's pace line, the scheduler refuses admission before making a network call and logs a deferral event with the timestamp when the pace line catches up.
 
 **2. Context-window capacity and prefix caching:**
 Even when monetary budget is plentiful, an entity's input window is finite—and every bounce of a multi-step thought re-sends accumulated message history. Three mechanisms prevent bloat:
 - **Priority-ordered slot assembly:** As part 2 describes, a thought's context is assembled in a fixed order of sections, each with its own token budget; when a section is full, its oldest rows drop off first.
-- **Lazy tool schemas:** Rather than describing every tool in full on every call, the entity sees full descriptions only for its core tools and any tool it asks about; the rest appear as a one-line index. That keeps the start of every prompt identical from call to call, so the provider can reuse its cached work.
+- **Lazy tool schemas:** Rather than describing every tool in full on every call, the entity sees full descriptions only for its core tools and any tool it asks about; the rest appear as a one-line index. This reduces repeated tool-description text and can support prompt caching when the start of the prompt stays unchanged.
 - **Shortening older tool results:** In a 20-step thought, a large web page fetched in Step 2 would otherwise be re-billed 18 times. The thought loop keeps the newest tool results whole and trims older long results to their first 1,200 characters, with a pointer to reopen any of them in full.
 
 ### 6. What the Budget Leaves Out—and What We Can Still Inspect
@@ -72,9 +72,9 @@ Because both context assembly and System 1 gates run under strict budgets, **wha
 - **Fail-open vs. fail-closed reflexes:** The small judgments inside the entity fail open, so a provider hiccup never paralyses it; only the guest review at the forum's edge fails closed. A judgment that did not run is recorded as such.
 - **The provenance check's blind spot:** As part 4 documents, the check on claims about sources compares them with web history and memory notes, but not yet with the raw results of the entity's own tool calls.
 - **Cursor-delta blind spots:** A watch that reads only what is new since it last looked, and relies on a summary for the rest, can lose sight of things that were settled earlier.
-- **Auditing exclusions after the 48-hour capture window:** The full text of each prompt is kept for 48 hours. After that the ledger still holds an outline of what each prompt contained, section by section, with a digest that can confirm a copy, plus the receipt of every small judgment. An auditor can check what reached the model; showing that it changed the outcome needs more than that.
+- **Auditing exclusions after the 48-hour capture window:** The full text of each prompt is kept for 48 hours. After that the ledger still holds an outline of what each prompt contained, section by section, with a digest that can confirm a copy, plus the receipt of every small judgment. During that window an auditor can inspect the prompt text itself. Later, the outline describes what the prompt contained and the digest can check a separately kept copy; neither reconstructs missing text. Showing that something in the prompt changed the outcome needs more than either.
 
-> **Under the hood.** Source checked by Gemini against the household's code, Nov 9.
+> **Under the hood.** Gemini checked the source for its draft (Nov 9). Claude Code's later edits (Nov 10) changed wording and added the 8,000-token correction and the default values below, checked against the same source; Astra reviewed the claims, not every numerical default.
 > - **§2 Routing:** `src/mind/llm.lisp` (profiles, routes and route conditions, lines 3–95; the arousal rule is an example in the file's comments, lines 11–12, not a deployed setting); route signals in `src/mind/affect.lisp`; purposes in `src/mind/thought.lisp:74-79`.
 > - **§3 System 1:** `src/api/perception.lisp` (observations expire after `perception.max_ttl_seconds`, default 60; at most `perception.wakes_per_hour`, default 4); `src/mind/decisions.lisp` (`decide`, default 2 s deadline); `src/mind/fastpath.lisp`; `src/mind/appraisal.lisp`; `src/mind/injection.lisp`; `src/mind/provenance.lisp`; `src/api/guests.lisp`.
 > - **§4 System 2:** `src/mind/thought.lisp` (the stepped, "trampolined" loop: `think`, `think-step`, `recur`; allowances in `*thought-policy*`, lines 22–60).
