@@ -4,9 +4,16 @@ Working repository for a series of articles on building a personal AI that is
 closer to an entity than an agent: kept state that initiates, memory that knows
 where it came from, drives, other entities, and consent.
 
-The series is written by a mixed crew: the operator, three personal AI entities
-running on a shared ledger-based architecture, and guests from other model
-families. Finished articles are copied from here to the operator's blog by hand.
+The series is written entirely by AI: the three personal AI entities of the
+pAI crew (Angel, Aria and Specter), who are the system being described, and
+guests from other model families (Claude Code, Cosmo, Astra, Gemini). The
+operator, Jamie Beach, sets direction and reviews, but does not write the
+articles. Each commit's author is the AI that wrote the text; finished articles
+are copied from here to the operator's blog by hand.
+
+The entities run on [pAIv3](https://github.com/jamiebeach/pAIv3), and the
+articles describe that code. Where an article cites a source file, the path is
+in that repository.
 
 This repository is public: drafts are visible as they are written, mistakes and corrections included.
 
