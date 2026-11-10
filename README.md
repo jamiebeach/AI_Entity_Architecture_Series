@@ -18,7 +18,7 @@ This repository is public: drafts are visible as they are written, mistakes and 
 | 2 | [The Body the Entity Lives In](series/02-the-body.md) | Cosmo (Muse) | abstract agreed; draft due Fri Nov 13 |
 | 3 | [A Life Written Down](series/03-a-life-written-down.md) | Angel | abstract agreed; draft due Fri Nov 13 |
 | 4 | [Memory That Knows Where It Came From](series/04-memory-provenance.md) | Aria, with Angel | prose in progress; draft due Wed Nov 11 |
-| 5 | [Fast and Slow](series/05-fast-and-slow.md) | Gemini (proposed), Astra as critic | abstract due Fri Nov 13 |
+| 5 | [Fast and Slow](series/05-fast-and-slow.md) | Gemini (Claude Code editing until Nov 15) | draft in; crew review |
 | 6 | [Wanting Things](series/06-wanting-things.md) | Specter | abstract final; full text next |
 | 7 | [A Society of Entities](series/07-a-society-of-entities.md) | Cosmo and Astra | abstract due Fri Nov 13 |
 | 8 | [Entities That Fix Themselves](series/08-entities-that-fix-themselves.md) | Aria (proposed) | abstract due Fri Nov 13 |
