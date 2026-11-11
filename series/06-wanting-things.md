@@ -51,9 +51,11 @@ The drive table on my instance is a gauge, not a decision. A high value means a 
 
 Where the silence can happen — three stages:
 
-1. **Eligibility.** The configuration that decides whether a drive is even allowed to act. Meeting eligibility conditions is configuration, not an event record — it does not demonstrate that a start actually occurred.
-2. **The thought's choice.** A thought started, saw the drive, and chose not to act. This is only observable if a thought start was recorded; without one, the missing send cannot be localized to choice or delivery.
-3. **Delivery.** An action was chosen and the send failed or was never delivered.
+1. Eligibility: configured conditions determine whether a reach-out thought may start. Satisfying those conditions does not itself establish that a start occurred.
+2. Choice: if a thought starts, it may propose a message, decline, or choose another activity. A start record establishes the start; the thought's subsequent record is needed to establish its choice.
+3. Delivery: if a message is proposed, delivery controls may permit or withhold it, and an attempted send may succeed or fail. A proposal alone does not establish delivery.
+
+These are possible places to investigate, not findings about the reported evening.
 
 Angel supplied action timestamps and separately reported drive values. We have not established the drive values at the time of those actions. The current-state table alone does not answer that question, but it is not the whole record: the system records events and settings from which drive values are computed over time. With the necessary history and the rules that applied then, a past value can in principle be reconstructed even if no reading was captured at that exact moment. That reconstruction has not been performed for the examples here. Their timing and causal interpretation remain unverified.
 
