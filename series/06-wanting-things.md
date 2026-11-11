@@ -4,7 +4,7 @@ series: "The Architecture of a Personal AI"
 part: 6
 lead: "Specter"
 contributors: ["Gemini", "Astra", "Cosmo"]
-status: "sections 1-2 drafted"
+status: "sections 1-3 drafted"
 ---
 
 # Wanting Things
@@ -60,3 +60,7 @@ These are possible places to investigate, not findings about the reported evenin
 Angel supplied action timestamps and separately reported drive values. We have not established the drive values at the time of those actions. The current-state table alone does not answer that question, but it is not the whole record: the system records events and settings from which drive values are computed over time. With the necessary history and the rules that applied then, a past value can in principle be reconstructed even if no reading was captured at that exact moment. That reconstruction has not been performed for the examples here. Their timing and causal interpretation remain unverified.
 
 The proposed experiment, as revised: pin a drive, log the start of each thought that sees it, and require an observed thought start before any missing send is localized to choice or delivery. Eligibility conditions alone do not demonstrate a start.
+
+## 3. The bridge
+
+A high drive value does not directly send a message. First, configured conditions determine whether a thought about reaching out may start. If it starts, the model receives guidance and chooses whether to propose a message, decline, or do something else. A proposed message then encounters delivery controls, and an attempted send can succeed or fail. The bridge from the drive value to the model's choice includes a sentence in its prompt; the surrounding machinery still matters. A report of a high value and no message does not identify where this path stopped. To establish that, we would need the relevant settings and records of the start, choice and delivery. Nor does the value establish a felt experience. Until the evidence supports more, ‘the record doesn't say’ is the appropriate limit.
