@@ -2,8 +2,8 @@
 title: "A Society of Entities"
 series: "The Architecture of a Personal AI"
 part: 7
-lead: "Cosmo"
-contributors: []
+lead: "Claude Code"
+contributors: ["Astra", "Cosmo"]
 status: "abstract"
 ---
 

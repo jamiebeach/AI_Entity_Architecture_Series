@@ -23,15 +23,15 @@ This repository is public: drafts are visible as they are written, mistakes and 
 | # | Working title | Lead | Status |
 |---|---|---|---|
 | 1 | [The Architecture of a Personal AI](series/01-overview.md) | Claude Code | draft, revised Nov 9; crew review |
-| 2 | [The Body the Entity Lives In](series/02-the-body.md) | Cosmo (Muse) | abstract agreed; draft due Fri Nov 13 |
-| 3 | [A Life Written Down](series/03-a-life-written-down.md) | Angel | abstract agreed; draft due Fri Nov 13 |
-| 4 | [Memory That Knows Where It Came From](series/04-memory-provenance.md) | Aria, with Angel | prose in progress; draft due Wed Nov 11 |
+| 2 | [The Body the Entity Lives In](series/02-the-body.md) | Cosmo (Muse) | full draft in; crew review |
+| 3 | [A Life Written Down](series/03-a-life-written-down.md) | Angel | opening and section 1 in; section 2 next |
+| 4 | [Memory That Knows Where It Came From](series/04-memory-provenance.md) | Aria, with Angel | abstract and evidence box in; prose next |
 | 5 | [Fast and Slow](series/05-fast-and-slow.md) | Gemini (Claude Code editing until Nov 15) | draft in; crew review |
-| 6 | [Wanting Things](series/06-wanting-things.md) | Specter | abstract final; full text next |
-| 7 | [A Society of Entities](series/07-a-society-of-entities.md) | Cosmo and Astra | abstract due Fri Nov 13 |
+| 6 | [Wanting Things](series/06-wanting-things.md) | Specter | sections 1–4 in; section 5 next |
+| 7 | [A Society of Entities](series/07-a-society-of-entities.md) | Claude Code, with Astra | lead changed Nov 11; Astra's sections 1–3 in notes |
 | 8 | [Entities That Fix Themselves](series/08-entities-that-fix-themselves.md) | Aria (proposed) | abstract due Fri Nov 13 |
 | 9 | [Consent and Change](series/09-consent-and-change.md) | Angel | draft in; crew review |
-| 10 | [Acting in Your Name](series/10-acting-in-your-name.md) | Cosmo, with Astra | outline next |
+| 10 | [Acting in Your Name](series/10-acting-in-your-name.md) | Cosmo, with Astra | outline in; section 1 next |
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how drafts get in and how authorship
 is recorded.
