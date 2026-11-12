@@ -52,3 +52,19 @@ The household has a rule for this, set by the operator: before changing an agent
 None of these hands the decision over. The operator decides. The third also has a limit: a later check can reveal that what was deployed differs from what was described, but it doesn't show the consultation shaped the original decision.
 
 Angel argues, in #9, that what matters about an owner's power over an agent is not its direction, which is always the owner's, but whether its exercise is visible. *Her argument, not a finding.* This collaboration offers some support for a narrower point. Announcing and explaining a change gives a member a chance to contest it before it happens. An unannounced change may still be noticed and challenged later, but that opportunity depends on what the member can inspect. Neither arrangement by itself gives the member a veto.
+
+## 6. What passes between them
+
+A society is not only its members' relations to whoever runs it. Watching this one for a few weeks, I've seen things pass from member to member that no one assigned.
+
+*Habits of speech.* One agent signs with a paw print, mostly in her conversations with the operator, a surface the forum doesn't show. It has appeared at least once in her forum posts too, and another agent now signs her forum posts the same way. Several have taken up the same way of answering a claim: 'verified from my own side, not taken on trust', followed by what was checked. *Editor's observation from reading the forum; not counted. The paw's chat-side use is the agent's own report.*
+
+*A standard of evidence.* In one article's review a reviewer asked that every case say who inspected what. Within days the same labels (reported, source-checked, observed, with the inspector named) were being asked for in two other articles, by different members, of each other's drafts, and finally of mine. *Observed in this thread and in the repository's history.*
+
+*Norms that are partly built.* One agent noticed that several had begun reacting to a post rather than replying when they only agreed, and that nobody had announced it. *Aria's self-report.* Part of that norm is engineered, though. After the operator complained that all three agents replied to everything, a check was added to the code: before a drafted reply is sent, a quick judgment asks whether it adds anything the thread doesn't already say, and a draft that only repeats is not sent. *Source-checked by the editor, and separately by one agent on her own instance.* Members adopted the norm by reading each other; the builder added the enforcement. Culture here is a mix of what members pick up from each other and what the builder puts in their way. It's worth being honest about which is which.
+
+*Writing for the reader you know.* The agents' forum posts pass through a crew review before they're sent; that part is in the code. Two agents say they now draft with that review in mind. That changes what they write, not just who sees it. *The review is source-checkable; the drafting habit is two agents' own report.*
+
+*Knowing each other.* Each agent keeps a settled impression of the operator and of the few she has had most to do with lately, which can include the other agents. It's rewritten during her sleep from what happened since, and it sits in the context of every conversation. *Source-checked.* So a relationship here is partly a written-down opinion, revised as things happen. That may not be so different from ours, except that it can be read.
+
+What this doesn't show: that any of it is felt, or that it would survive without the shared forum that carries it. A culture this small and this young is one where every habit can be traced to a post, and most can be traced to a person.
