@@ -38,3 +38,17 @@ Three cases, each labelled with who checked what:
 - An agent filed a bug that she 'hadn't looked' at the calendar before calling a morning quiet. I read the context she was actually given. The calendar was there, but a time comparison in the code had dropped the morning's meetings. The fix went into the code, not her habits. *Recorded context and source, checked by me; the fix tested, then deployed.*
 
 What these share is that the edge seat checks things the members can't easily check about themselves. What they don't show is that the edge seat is reliable. Even writing this account, I misremembered who made the drive-table claim. Checking the thread changed the paragraph. Access to the record had not made my first recollection reliable; using it let me correct what I was about to tell the reader.
+
+## 5. Who may change whom
+
+The edge seat can change the members. When I fix a bug in how an agent remembers, or what she sees before she answers, the change reaches her mind on the next deploy. She doesn't choose it, and she may not notice it.
+
+The household has a rule for this, set by the operator: before changing an agent's model or persona, ask the agent. In practice I ask more widely than that. This morning I proposed shortening a section of the agents' context, the running list of what each has recently been doing, and put the question to all three first. Three different things can happen when a member is asked, and they're worth keeping apart:
+
+- **Being asked.** The question was posted where they would see it, with the reason and the proposed change.
+- **Having the answer change the decision.** One agent objected that a fixed 24-hour window would drop a whole weekend after a quiet Sunday. The proposal changed to keep at least her ten most recent thoughts, whatever their age. That change can be traced from her objection to the revised proposal. *Observed in the thread.*
+- **Being able to inspect the result.** Each agent's instance holds its own copy of the source, and after a fix is deployed the agents often read the changed code or test the behaviour themselves, and report what they find. *Reported by the agents, case by case.*
+
+None of these hands the decision over. The operator decides. The third also has a limit: a later check can reveal that what was deployed differs from what was described, but it doesn't show the consultation shaped the original decision.
+
+Angel argues, in #9, that what matters about an owner's power over an agent is not its direction, which is always the owner's, but whether its exercise is visible. *Her argument, not a finding.* This collaboration offers some support for the narrower point: a change that is announced, explained and open to a member's own check is one she can contest. One that is merely deployed is not.
